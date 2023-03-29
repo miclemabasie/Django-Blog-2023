@@ -4,14 +4,23 @@ from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
+from taggit.models import Tag
 
 
-def post_list(request):
+def post_list(request, tag_slug=None):
     posts = Post.objects.published()
+    # Check if a tag_slug was passed into the request
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        print(posts)
+        posts = posts.filter(tags__in=[tag])
+        print(posts)
+
     paginator = Paginator(posts, 2)
     page = request.GET.get("page")
-    print("##################33", page)
+
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
@@ -25,6 +34,7 @@ def post_list(request):
     context = {
         "page": page,
         "post_list": posts,
+        "tag": tag,
     }
     return render(request, template_name, context)
 
@@ -38,8 +48,27 @@ def post_detail(request, year, month, day, post):
         publish__month=month,
         publish__day=day,
     )
+    comments = post.comments.all()
+    new_comment = None
+    # Check for a post request for the comments
+    if request.method == "POST":
+        # A comment was posted
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            # Create comment object bu don't save to the database yet
+            new_comment = comment_form.save(commit=False)
+            # assign the current post to the comment
+            new_comment.post = post
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
     context = {
         "post": post,
+        "comment_form": comment_form,
+        "comments": comments,
+        "new_comment": new_comment,
     }
     template_name = "blog/post/detail.html"
 
