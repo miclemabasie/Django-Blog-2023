@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,9 +23,22 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
 
+        }
+
+        .main {
+            width: 700px;
+        }
+
+        .sidebar {
+            max-width: 300px;
+            background-color: black;
+            color: green;
         }
 
         .tags {
@@ -36,10 +50,28 @@
 
 <body>
     <div class="container">
-        {% block content %}
+        <div class="main">
+            {% block content %}
 
-        {% endblock content %}
+            {% endblock content %}
+        </div>
+        <div class="sidebar">
+            <h2>My Blog</h2>
+            <p>This is my blog. I'v wretten {% total_posts %} posts so far.</p>
+            <h3>Latest Posts </h3>
+            {% show_latest_posts%}
+            <h3>Most Commented Posts</h3>
+            {% get_most_commented_posts as most_commented_posts %}
+            <ul>
+                {% for post in most_commented_posts %}
+                <li>
+                    <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
+
 </body>
 
 </html>
