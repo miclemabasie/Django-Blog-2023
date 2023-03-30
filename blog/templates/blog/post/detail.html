@@ -1,4 +1,5 @@
 {% extends "../base.html" %}
+{% load blog_tags %}
 
 {% block content %}
 <h1 class="title"> {{ post.title }} </h1>
@@ -7,7 +8,7 @@
     Published {{ post.publish }} by {{ post.author }}
 </p>
 <p class="body">
-    {{ post.body|linebreaks}}
+    {{ post.body|markdown}}
 </p>
 
 
@@ -39,7 +40,7 @@
         Comment {{ forloop.counter }} by {{ comment.name}}
         {{comment.created}}
     </p>
-    {{comment.body|linebreaks}}
+    {{comment.body|markdown}}
 </div>
 {% empty %}
 <p>There are no comments yet</p>

@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SITE_ID = 1
 # Application definition
 
 DJANGO_APPS = [
@@ -37,6 +37,9 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # sitemap related apps
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
 ]
 
 LOCAL_APPS = [
