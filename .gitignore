@@ -72,6 +72,7 @@ wheels/
 pip-log.txt 
 pip-delete-this-directory.txt 
 
+
 # Unit test / coverage reports 
 htmlcov/ 
 .tox/ 
@@ -83,6 +84,9 @@ nosetests.xml
 coverage.xml 
 *.cover 
 .hypothesis/ 
+
+# node modules
+# node_modules
 
 # Jupyter Notebook 
 .ipynb_checkpoints 
@@ -138,3 +142,5 @@ GitHub.sublime-settings
 
 # locals
 ztest.py
+
+node_modules

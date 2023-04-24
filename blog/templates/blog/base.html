@@ -1,3 +1,4 @@
+{% load static %}
 {% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,57 +7,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "output.css" %}">
     <title>{{title}}</title>
-    <style>
-        .date {
-            color: gray;
-            font-style: italic;
-        }
-
-        .title {
-            font-size: 50px;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .line {
-            border-bottom: 5px gray solid;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-
-        }
-
-        .main {
-            width: 700px;
-        }
-
-        .sidebar {
-            max-width: 300px;
-            background-color: black;
-            color: green;
-        }
-
-        .tags {
-            font-weight: bold;
-
-        }
-    </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container ml-auto">
+        <h1 class="text-500-red">Hello world</h1>
         <div class="main">
             {% block content %}
 
             {% endblock content %}
         </div>
         <div class="sidebar">
-            <h2>My Blog</h2>
+            <h2 class="text-red-800">My Blog</h2>
             <p>This is my blog. I'v wretten {% total_posts %} posts so far.</p>
             <p>
                 <a href="{% url "blog:post_feed" %}">Subscribe to my RSS feed</a>
@@ -72,7 +36,7 @@
                 </li>
                 {% endfor %}
             </ul>
-            
+
         </div>
     </div>
 
