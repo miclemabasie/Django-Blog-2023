@@ -24,6 +24,7 @@ class Post(models.Model):
     )
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
+    image = models.ImageField(upload_to="media/%Y_%m_%d", null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(

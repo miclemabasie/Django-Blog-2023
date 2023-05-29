@@ -14,6 +14,15 @@ from .forms import EmailPostForm, CommentForm, SearchForm
 from taggit.models import Tag
 
 
+def index(request):
+    posts = Post.objects.published().order_by("-created")
+    template_name = "home.html"
+    context = {
+        "posts": posts,
+    }
+
+    return render(request, template_name, context)
+
 def post_list(request, tag_slug=None):
     posts = Post.objects.published()
     # Check if a tag_slug was passed into the request

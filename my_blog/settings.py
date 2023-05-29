@@ -38,6 +38,7 @@ DJANGO_APPS = [
     "django.contrib.sitemaps",
     # Search functionality apps
     "django.contrib.postgres",
+    'django.contrib.humanize'
 ]
 
 LOCAL_APPS = [
