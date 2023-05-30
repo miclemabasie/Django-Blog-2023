@@ -5,7 +5,7 @@ from pathlib import Path
 env = environ.Env(DEBUG=(bool, False))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Read environment variables
 environ.Env.read_env(BASE_DIR / ".env")
@@ -16,10 +16,6 @@ environ.Env.read_env(BASE_DIR / ".env")
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = "django-insecure-^wo34vt69*46cal!(2d7%n_r6$d-36$as-__$on0-fy2kbp&e-"
 SECRET_KEY = env("SECRET_KEY")
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
@@ -38,7 +34,8 @@ DJANGO_APPS = [
     "django.contrib.sitemaps",
     # Search functionality apps
     "django.contrib.postgres",
-    'django.contrib.humanize'
+    "django.contrib.humanize",
+    "users.apps.UsersConfig",
 ]
 
 LOCAL_APPS = [
@@ -48,6 +45,8 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     "taggit",
 ]
+
+AUTH_USER_MODEL = "users.User"
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
@@ -79,23 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "my_blog.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": env("POSTGRES_ENGINE"),
-        "NAME": env("POSTGRES_DB"),
-        "USER": env("POSTGRES_USER"),
-        "PASSWORD": env("POSTGRES_PASSWORD"),
-        "PORT": env("PG_PORT"),
-        "HOST": env("PG_HOST"),
-    }
-}
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # Password validation
