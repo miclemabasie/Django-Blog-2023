@@ -1,18 +1,13 @@
  <!-- Fixed sidebar -->
  <div class="sidebar">
     <div class="sidebar-content">
-        <div class="search-container">
-            <form>
-                <input type="text" placeholder="Search...">
-            </form>
-        </div>
         <div class="recent-posts">
             <h2>Recent Posts</h2>
-            <ul>
-                <li><a href="#">Post 1 Title</a></li>
-                <li><a href="#">Post 2 Title</a></li>
-                <li><a href="#">Post 3 Title</a></li>
-            </ul>
+            {% for post in recent_posts %}
+                <div class="post">
+                    <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+                </div>
+            {% endfor %}
         </div>
         <div class="categories">
             <h2>Categories</h2>

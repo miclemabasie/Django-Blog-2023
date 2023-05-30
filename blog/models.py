@@ -3,6 +3,22 @@ from django.utils import timezone
 from django.urls import reverse
 from taggit.managers import TaggableManager
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=150, verbose_name=_("Name"))
+    slug = models.SlugField(max_length=250, unique_for_date="created")
+    description = models.TextField()
+    image = models.ImageField(upload_to="media/categories")
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Categorie"
 
 
 class PublishedManager(models.Manager):
@@ -21,6 +37,12 @@ class Post(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date="publish")
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="blog_posts"
+    )
+    category = models.ForeignKey(
+        Category,
+        related_name="posts",
+        verbose_name=_("Category"),
+        on_delete=models.CASCADE,
     )
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)

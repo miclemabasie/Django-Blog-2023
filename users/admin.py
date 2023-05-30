@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import Group
-from .models import User
+from .models import User, Profile
 
 
 class UserAdmin(BaseUserAdmin):
@@ -89,3 +89,8 @@ admin.site.register(User, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 # admin.site.unregister(Group)
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    fields = ["user", "image"]

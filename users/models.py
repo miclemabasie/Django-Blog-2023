@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from .managers import CustomUserManager
+from django.conf import settings
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -28,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _("Users")
 
     def __str__(self):
-        return self.username
+        return self.email
 
     @property
     def get_full_name(self):
@@ -36,3 +37,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.username
+
+
+class Profile(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="profiles", on_delete=models.CASCADE
+    )
+    image = models.ImageField(upload_to="media/profiles")
+
+    def __str__(self):
+        return f"{self.user.email}'s profile"
