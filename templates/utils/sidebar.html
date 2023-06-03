@@ -12,9 +12,10 @@
         <div class="categories">
             <h2>Categories</h2>
             <ul>
-                <li><a href="#">Web Development</a></li>
-                <li><a href="#">Data Science</a></li>
-                <li><a href="#">Machine Learning</a></li>
+                {% for category in categories %}
+                    <li><a href="#">{{category.name}}</a></li>
+                {% endfor %}
+            
             </ul>
         </div>
     </div>

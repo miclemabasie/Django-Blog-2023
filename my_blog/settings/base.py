@@ -44,6 +44,8 @@ LOCAL_APPS = [
 
 THIRD_PARTY_APPS = [
     "taggit",
+    "rest_framework",
+    "taggit_serializer",
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -72,7 +74,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "blog.context_processors.recent_posts",  # path to recent posts
+                "blog.context_processors.recent_posts",
+                "blog.context_processors.categories",
             ],
         },
     },

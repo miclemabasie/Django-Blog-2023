@@ -3,12 +3,16 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .serializers import PostSerializer, PostSerializer2
+from django.http import JsonResponse
 from django.contrib.postgres.search import (
     SearchVector,
     SearchQuery,
     SearchRank,
     TrigramSimilarity,
 )
+
+
 from .models import Post
 from .forms import EmailPostForm, CommentForm, SearchForm
 from taggit.models import Tag
@@ -23,7 +27,8 @@ def index(request):
 
     return render(request, template_name, context)
 
-def post_list(request, tag_slug=None):
+
+def post_list(request, tag_slug=None, amount=30):
     posts = Post.objects.published()
     # Check if a tag_slug was passed into the request
     tag = None
@@ -33,25 +38,8 @@ def post_list(request, tag_slug=None):
         posts = posts.filter(tags__in=[tag])
         print(posts)
 
-    paginator = Paginator(posts, 2)
-    page = request.GET.get("page")
-
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        # If page isnot an integer deliver the first page
-        posts = paginator.page(1)
-    except EmptyPage:
-        # If page is oput of range deliver last page of results
-        posts = paginator.page(paninator.num_pages)
-
-    template_name = "blog/post/list.html"
-    context = {
-        "page": page,
-        "post_list": posts,
-        "tag": tag,
-    }
-    return render(request, template_name, context)
+    serializer = PostSerializer2(posts, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
 
 def post_detail(request, year, month, day, post):

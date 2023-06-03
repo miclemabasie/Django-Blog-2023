@@ -1,4 +1,4 @@
-from .models import Post
+from .models import Post, Category
 
 
 def recent_posts(request):
@@ -6,4 +6,10 @@ def recent_posts(request):
         :5
     ]  # get 5 most recent posts by date created
     context = {"recent_posts": posts}
+    return context
+
+
+def categories(reqeust):
+    categories = Category.objects.all()
+    context = {"categories": categories}
     return context
