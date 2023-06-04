@@ -7,39 +7,7 @@
 {% block content %}
 <div class="posts" id="posts">
     <!-- Post 1 -->
-    {% for post in posts %}
-    <div class="post">
-        <div class="info">
-
-            <img class="author-image"
-                src="{% if post.author.profiles.first.image %} {{post.author.profiles.first.image.url}}{% else %} {% static 'images/nopic.png' %}{% endif %}"
-                alt="">
-            <p class="author-name">{{ post.author | capfirst }} </p>
-            <p class="time-ago">{{ post.created | naturaltime }}</p>
-        </div>
-        <div class="post-content-container">
-            <div class="post-content-text">
-                <h2><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h2>
-                <p>{{ post.body | truncatewords:30}}</p>
-            </div>
-            <div>
-
-                <img class="post-content-image"
-                    src="{% if post.image %}{{post.image.url}}{% else %}{% static 'images/img2.png' %}{% endif %}"
-                    alt="">
-            </div>
-        </div>
-        <div class="tags">
-            {% for tag in post.tags.all %}
-            <p class="tag">{{ tag.name }}</p>
-            {% endfor %}
-
-        </div>
-        <div class="line"></div>
-
-    </div>
-    {% endfor %}
-
+   
 </div>
 {% endblock content %}
 

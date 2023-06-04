@@ -11,7 +11,7 @@ from django.contrib.postgres.search import (
     SearchRank,
     TrigramSimilarity,
 )
-
+import time, logging
 
 from .models import Post
 from .forms import EmailPostForm, CommentForm, SearchForm
@@ -37,14 +37,24 @@ def post_list(request, tag_slug=None):
         print(posts)
         posts = posts.filter(tags__in=[tag])
         print(posts)
-
+    time.sleep(2)
     start = int(request.GET.get("start"))
     end = int(request.GET.get("end"))
-    # get the list of posts in that range
+
+    max_len = len(posts)
+    if start > max_len or end > max_len:
+        if start < max_len:
+            posts = posts[start:max_len]
+            serializer = PostSerializer(posts, many=True)
+            return JsonResponse(serializer.data, safe=False)
+        data = "Request out of range"
+        logging.error(data)
+        return JsonResponse({"message": data})
 
     posts = posts[start:end]
 
     serializer = PostSerializer(posts, many=True)
+    # time.sleep(2)
     return JsonResponse(serializer.data, safe=False)
 
 
