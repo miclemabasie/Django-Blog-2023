@@ -51,14 +51,14 @@ function loadData(options, url, start, end) {
 // function to create the post element and append to the page
 function createPostElement(container, post) {
 
-
+    console.log(post)
     let lineDiv = document.createElement("div")
     lineDiv.className = "line"
 
 
     let authorName = document.createElement("p")
     authorName.className = "author-name"
-    authorName.innerText = "Miclem Abasie"
+    authorName.innerText = post.author
     let timeAgo = document.createElement("p")
     timeAgo.className = "time-ago"
     timeAgo.innerText = post.created
