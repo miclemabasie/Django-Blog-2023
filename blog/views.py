@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .serializers import PostSerializer, PostSerializer2
+from .serializers import PostSerializer
 from django.http import JsonResponse
 from django.contrib.postgres.search import (
     SearchVector,
@@ -28,7 +28,7 @@ def index(request):
     return render(request, template_name, context)
 
 
-def post_list(request, tag_slug=None, amount=30):
+def post_list(request, tag_slug=None):
     posts = Post.objects.published()
     # Check if a tag_slug was passed into the request
     tag = None
@@ -38,7 +38,13 @@ def post_list(request, tag_slug=None, amount=30):
         posts = posts.filter(tags__in=[tag])
         print(posts)
 
-    serializer = PostSerializer2(posts, many=True)
+    start = int(request.GET.get("start"))
+    end = int(request.GET.get("end"))
+    # get the list of posts in that range
+
+    posts = posts[start:end]
+
+    serializer = PostSerializer(posts, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 

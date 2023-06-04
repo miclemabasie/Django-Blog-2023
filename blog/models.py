@@ -74,6 +74,11 @@ class Post(models.Model):
             ],
         )
 
+    def get_intro(self):
+        text = self.body.split(" ")[0:30]
+        content = " ".join(text)
+        return content
+
 
 class Comment(models.Model):
     post = models.ForeignKey(

@@ -5,7 +5,7 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<div class="posts">
+<div class="posts" id="posts">
     <!-- Post 1 -->
     {% for post in posts %}
     <div class="post">
@@ -46,19 +46,8 @@
 
 {% block scripts %}
 <script>
-    const url = "{% url 'blog:post_list' %}"
-    const headers = {
-        "content-type": "application/json"
-    }
-    const options = {
-        method: "GET",
-        headers: headers
-    }
-
-    fetch(url, options)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
+    
+    
+    {% include "javascript/posts.js" %}
 </script>
 {% endblock scripts %}
