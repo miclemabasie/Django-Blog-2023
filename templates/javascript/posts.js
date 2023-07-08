@@ -42,6 +42,7 @@ function loadData(options, url, start, end) {
                 data.forEach(post => {
                     createPostElement(posts, post)
                 });
+                console.log(data)
 
             }
         })
@@ -77,7 +78,8 @@ function createPostElement(container, post) {
     anchor.setAttribute('href', post.url);
     // Set the text content
     anchor.textContent = post.title;
-    postTitle.innerHTML = post.id
+    postTitle.appendChild(anchor)
+    // postTitle.innerHTML = anchor.textContent
 
     // body paragraph
     let pbody = document.createElement("p")

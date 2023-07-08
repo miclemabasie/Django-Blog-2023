@@ -40,8 +40,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name="profiles", on_delete=models.CASCADE
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, related_name="profile", on_delete=models.CASCADE
     )
     image = models.ImageField(upload_to="media/profiles")
 

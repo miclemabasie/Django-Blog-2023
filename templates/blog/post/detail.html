@@ -1,8 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
 
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static "css/details_styles.css" %}">
+{% endblock extra_styles %}
 
 {% block title %}{{post.title}}{% endblock title %}
 
 {% block content %}
-    <h1>{{post.title}}</h1>
+<h1 class="detail-title">{{post.title}}</h1>
+
+<div class="post-author-detail">
+
+    <img class="detail-author-image" src="{{post.author.profile.image.url}}" alt="">
+    <div class="post-author-name-time">
+        <h3>{{post.author.username}}</h3>
+        <p class="time-ago">{{post.created|timesince}} ago</p>
+    </div>
+</div>
+
+<p class="details">{{post.body}}</p>
 {% endblock content %}
