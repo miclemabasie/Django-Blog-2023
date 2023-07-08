@@ -164,3 +164,9 @@ def post_search(request):
     }
 
     return render(request, template_name, context)
+
+
+def post_upload(request):
+    template_name = "blog/post/upload.html"
+    context = {}
+    return render(request, template_name, context)

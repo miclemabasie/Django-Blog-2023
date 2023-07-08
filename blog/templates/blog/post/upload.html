@@ -1,0 +1,41 @@
+<h1>This is the upload page </h1>
+
+
+<div id="editorjs"></div>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/header"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/list"></script>
+
+<script>
+
+    // const editor = new EditorJS({
+    //     holder: 'editorjs',
+    //     tools: {
+    //         // Define the available tools/configurations for the editor
+    //         // For example, you can include headings, paragraphs, lists, etc.
+    //         // Refer to the Editor.js documentation for more options.
+    //     }
+    // });
+
+    const editor = new EditorJS({
+        /** 
+         * Id of Element that should contain the Editor 
+         */
+        holder: 'editorjs',
+
+        /** 
+         * Available Tools list. 
+         * Pass Tool's class or Settings object for each Tool you want to use 
+         */
+        tools: {
+            header: {
+                class: Header,
+                inlineToolbar: ['link']
+            },
+            list: {
+                class: List,
+                inlineToolbar: true
+            }
+        },
+    })
+</script>
