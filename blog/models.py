@@ -4,6 +4,7 @@ from django.urls import reverse
 from taggit.managers import TaggableManager
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django_editorjs import EditorJsField
 
 
 class Category(models.Model):
@@ -44,7 +45,19 @@ class Post(models.Model):
         verbose_name=_("Category"),
         on_delete=models.CASCADE,
     )
-    body = models.TextField()
+    body = EditorJsField(
+        editorjs_config={
+            "tools": {
+                "Link": {"config": {"endpoint": "/linkfetching/"}},
+                "Image": {
+                    "config": {
+                        "endpoints": {"byFile": "/uploadi/", "byUrl": "/uploadi/"},
+                    }
+                },
+                "Attaches": {"config": {"endpoint": "/uploadf/"}},
+            }
+        }
+    )
     publish = models.DateTimeField(default=timezone.now)
     image = models.ImageField(upload_to="media/%Y_%m_%d", null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)

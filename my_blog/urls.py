@@ -5,6 +5,9 @@ from blog.sitemaps import PostSitemap
 from django.conf import settings
 from django.conf.urls.static import static
 from blog.views import index
+from django.views.decorators.csrf import csrf_exempt
+from blog.views import *
+
 
 sitemaps = {
     "posts": PostSitemap,
@@ -20,6 +23,9 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemaps",
     ),
     path("", index, name="index"),
+    path("uploadi/", csrf_exempt(uploadi)),
+    path("uploadf/", csrf_exempt(uploadf)),
+    path("linkfetching/", upload_link_view),
 ]
 
 

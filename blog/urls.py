@@ -1,6 +1,8 @@
 from django.urls import path
 from .feeds import LatestPostFeed
 from . import views
+from .views import uploadf, uploadi
+from django.views.decorators.csrf import csrf_exempt
 
 app_name = "blog"
 
@@ -23,5 +25,8 @@ urlpatterns = [
     ),
     path("feed/", LatestPostFeed(), name="post_feed"),
     path("search/", views.post_search, name="post_search"),
-    path("upload/", views.post_upload, name="upload_post"),
+    path("create-post/", views.post_upload, name="upload_post"),
+    path("uploadi/", csrf_exempt(uploadi)),
+    path("uploadf/", csrf_exempt(uploadf)),
+    path("linkfetching/", views.upload_link_view),
 ]

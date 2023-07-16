@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "taggit_serializer",
     "django_extensions",
+    "django_editorjs",
 ]
 
 AUTH_USER_MODEL = "users.User"

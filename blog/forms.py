@@ -1,5 +1,7 @@
 from django import forms
 from .models import Post, Comment
+from django import forms
+from django_editorjs.widgets import EditorJsWidget
 
 
 class EmailPostForm(forms.Form):
@@ -23,3 +25,9 @@ class SearchForm(forms.Form):
             },
         )
     )
+
+
+class CreatePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ("title", "category", "body", "tags", "status")
