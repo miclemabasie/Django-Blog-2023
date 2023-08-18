@@ -48,6 +48,7 @@ THIRD_PARTY_APPS = [
     "taggit_serializer",
     "django_extensions",
     "django_editorjs",
+    "ckeditor",
 ]
 
 AUTH_USER_MODEL = "users.User"

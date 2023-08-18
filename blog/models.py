@@ -5,6 +5,7 @@ from taggit.managers import TaggableManager
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django_editorjs import EditorJsField
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -45,19 +46,21 @@ class Post(models.Model):
         verbose_name=_("Category"),
         on_delete=models.CASCADE,
     )
-    body = EditorJsField(
-        editorjs_config={
-            "tools": {
-                "Link": {"config": {"endpoint": "/linkfetching/"}},
-                "Image": {
-                    "config": {
-                        "endpoints": {"byFile": "/uploadi/", "byUrl": "/uploadi/"},
-                    }
-                },
-                "Attaches": {"config": {"endpoint": "/uploadf/"}},
-            }
-        }
-    )
+    # body = EditorJsField(
+    #     editorjs_config={
+    #         "tools": {
+    #             "Link": {"config": {"endpoint": "/linkfetching/"}},
+    #             "Image": {
+    #                 "config": {
+    #                     "endpoints": {"byFile": "/uploadi/", "byUrl": "/uploadi/"},
+    #                 }
+    #             },
+    #             "Attaches": {"config": {"endpoint": "/uploadf/"}},
+    #         }
+    #     }
+    # )
+    body = RichTextField(blank=True, null=True)
+    highlight = models.CharField(max_length=250, blank=True, null=True)
     publish = models.DateTimeField(default=timezone.now)
     image = models.ImageField(upload_to="media/%Y_%m_%d", null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -88,7 +91,7 @@ class Post(models.Model):
         )
 
     def get_intro(self):
-        text = self.body.split(" ")[0:30]
+        text = self.highlight.split(" ")[0:30]
         content = " ".join(text)
         return content
 
