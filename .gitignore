@@ -5,6 +5,8 @@
 __pycache__
 db.sqlite3
 media
+local_cdn
+./local_cdn
 
 # Backup files # 
 *.bak 

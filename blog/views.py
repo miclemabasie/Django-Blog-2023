@@ -64,14 +64,17 @@ def post_list(request, tag_slug=None):
 
 
 def post_detail(request, year, month, day, post):
+    print("############ print from django view")
+    print(post, year, month, day)
     post = get_object_or_404(
         Post,
         slug=post,
         status="published",
-        publish__year=year,
-        publish__month=month,
-        publish__day=day,
+        # publish__year=year,
+        # publish__month=month,
+        # publish__day=day,
     )
+    print("##########33 Post", post)
     comments = post.comments.all()
     new_comment = None
     # Check for a post request for the comments
