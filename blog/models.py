@@ -95,6 +95,13 @@ class Post(models.Model):
         content = " ".join(text)
         return content
 
+    def get_author_image(self):
+        if self.author.profile.image:
+            url = self.author.profile.image.url
+        else:
+            url = None
+        return url
+
 
 class Comment(models.Model):
     post = models.ForeignKey(

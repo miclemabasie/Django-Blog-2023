@@ -65,7 +65,7 @@ function createPostElement(container, post) {
     timeAgo.innerText = post.created
     // create element to hold images
     let authorImage = new Image()
-    authorImage.src = post.image
+    authorImage.src = post.author_img
     authorImage.className = "author-image"
     let postImage = new Image()
     postImage.src = post.image

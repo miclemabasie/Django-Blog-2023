@@ -8,6 +8,7 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     intro = serializers.SerializerMethodField()
     author = serializers.SerializerMethodField()
+    author_img = serializers.SerializerMethodField()
 
     def get_url(self, obj):
         return obj.get_absolute_url()
@@ -20,6 +21,9 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
             return obj.author.username
         else:
             return obj.author.email
+
+    def get_author_img(self, obj):
+        return obj.get_author_image()
 
     class Meta:
         model = Post
