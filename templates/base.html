@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include "./styles/head_links.html" %}
+    </head>
+
+<body>
+ 
+    {% include "./components/navigation.html" %}
+      
+    <section class="banner" id="top" style="background-image: url( {% static 'img/homepage-banner-image-1920x700.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="banner-caption">
+                        <div class="line-dec"></div>
+                        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+                        <div class="blue-button">
+                            <a href="contact.html">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+
+        {% include "./components/about_me.html" %}
+
+        {% include "./components/recent_work.html" %}
+        {% include "./components/cta.html" %}
+        {% include "./components/blog_posts.html" %}
+
+        {% comment %} Testimonials {% endcomment %}
+    </main>
+    {% include "./components/footer.html" %}
+
+    {% include "./styles/footer_links.html" %}
+</body>
+</html>
