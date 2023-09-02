@@ -1,4 +1,5 @@
 from .models import Post, Category
+from taggit.models import Tag
 
 
 def recent_posts(request):
@@ -12,4 +13,10 @@ def recent_posts(request):
 def categories(reqeust):
     categories = Category.objects.all()
     context = {"categories": categories}
+    return context
+
+
+def tags(request):
+    tags = Tag.objects.all()
+    context = {"tags": tags}
     return context

@@ -7,11 +7,16 @@ from django.views.decorators.csrf import csrf_exempt
 app_name = "blog"
 
 urlpatterns = [
-    path("", views.post_list, name="post_list"),
+    path("<int:page>/", views.post_list, name="post_list"),
     path(
-        "tag/<slug:tag_slug>/",
+        "<int:page>/tag/<slug:tag_slug>/",
         views.post_list,
         name="post_list_by_tag",
+    ),
+    path(
+        "<int:page>/category/<slug:category>/",
+        views.post_list,
+        name="post_list_by_category",
     ),
     path(
         "<int:year>/<int:month>/<int:day>/<slug:post>/",

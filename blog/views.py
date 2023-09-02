@@ -13,12 +13,13 @@ from django.contrib.postgres.search import (
     SearchRank,
     TrigramSimilarity,
 )
+from django.core.paginator import Paginator
 from django.utils.text import slugify
 import time, logging
 from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import requires_csrf_token
 
-from .models import Post
+from .models import Post, Category
 from .forms import EmailPostForm, CommentForm, SearchForm, CreatePostForm
 from taggit.models import Tag
 
@@ -33,43 +34,30 @@ def index(request):
     return render(request, template_name, context)
 
 
-def post_list(request, tag_slug=None):
-    if request.method == "POST":
-        posts = Post.objects.published()
-        # Check if a tag_slug was passed into the request
-        tag = None
-        if tag_slug:
-            tag = get_object_or_404(Tag, slug=tag_slug)
-            print(posts)
-            posts = posts.filter(tags__in=[tag])
-            print(posts)
-        time.sleep(2)
-        start = int(request.GET.get("start"))
-        end = int(request.GET.get("end"))
+def post_list(request, page, tag_slug=None, category=None):
+    template_name = "blog/list.html"
+    posts = Post.objects.filter(status="published")
+    # posts = Post.objects.all()
+    tag = None
+    cat = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        print(posts)
+        posts = posts.filter(tags__in=[tag])
+    if category:
+        cat = get_object_or_404(Category, name=category)
+        posts = posts.filter(category=cat)
+    paginator = Paginator(posts, per_page=2)
+    page_object = paginator.get_page(page)
 
-        max_len = len(posts)
-        if start > max_len or end > max_len:
-            if start < max_len:
-                posts = posts[start:max_len]
-                serializer = PostSerializer(posts, many=True)
-                return JsonResponse(serializer.data, safe=False)
-            data = "Request out of range"
-            logging.error(data)
-            return JsonResponse({"message": data})
-
-        posts = posts[start:end]
-
-        serializer = PostSerializer(posts, many=True)
-        # time.sleep(2)
-        return JsonResponse(serializer.data, safe=False)
-    else:
-        template_name = "blog/list.html"
-        posts = Post.objects.filter(status="published")
-        # posts = Post.objects.all()
-        context = {
-            "posts": posts,
-        }
-        return render(request, template_name, context)
+    context = {
+        "page_obj": page_object,
+        "posts": posts,
+        "tag": tag,
+        "category": category,
+    }
+    print("#######", context["category"])
+    return render(request, template_name, context)
 
 
 def post_detail(request, year, month, day, post):
