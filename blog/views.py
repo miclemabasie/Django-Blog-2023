@@ -34,33 +34,42 @@ def index(request):
 
 
 def post_list(request, tag_slug=None):
-    posts = Post.objects.published()
-    # Check if a tag_slug was passed into the request
-    tag = None
-    if tag_slug:
-        tag = get_object_or_404(Tag, slug=tag_slug)
-        print(posts)
-        posts = posts.filter(tags__in=[tag])
-        print(posts)
-    time.sleep(2)
-    start = int(request.GET.get("start"))
-    end = int(request.GET.get("end"))
+    if request.method == "POST":
+        posts = Post.objects.published()
+        # Check if a tag_slug was passed into the request
+        tag = None
+        if tag_slug:
+            tag = get_object_or_404(Tag, slug=tag_slug)
+            print(posts)
+            posts = posts.filter(tags__in=[tag])
+            print(posts)
+        time.sleep(2)
+        start = int(request.GET.get("start"))
+        end = int(request.GET.get("end"))
 
-    max_len = len(posts)
-    if start > max_len or end > max_len:
-        if start < max_len:
-            posts = posts[start:max_len]
-            serializer = PostSerializer(posts, many=True)
-            return JsonResponse(serializer.data, safe=False)
-        data = "Request out of range"
-        logging.error(data)
-        return JsonResponse({"message": data})
+        max_len = len(posts)
+        if start > max_len or end > max_len:
+            if start < max_len:
+                posts = posts[start:max_len]
+                serializer = PostSerializer(posts, many=True)
+                return JsonResponse(serializer.data, safe=False)
+            data = "Request out of range"
+            logging.error(data)
+            return JsonResponse({"message": data})
 
-    posts = posts[start:end]
+        posts = posts[start:end]
 
-    serializer = PostSerializer(posts, many=True)
-    # time.sleep(2)
-    return JsonResponse(serializer.data, safe=False)
+        serializer = PostSerializer(posts, many=True)
+        # time.sleep(2)
+        return JsonResponse(serializer.data, safe=False)
+    else:
+        template_name = "blog/list.html"
+        posts = Post.objects.filter(status="published")
+        # posts = Post.objects.all()
+        context = {
+            "posts": posts,
+        }
+        return render(request, template_name, context)
 
 
 def post_detail(request, year, month, day, post):
@@ -97,7 +106,7 @@ def post_detail(request, year, month, day, post):
         "comments": comments,
         "new_comment": new_comment,
     }
-    template_name = "blog/post/detail.html"
+    template_name = "blog/detail.html"
 
     return render(request, template_name, context)
 

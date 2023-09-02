@@ -1,1 +1,17 @@
 {% extends "base.html" %}
+
+
+{% block content %}
+    
+
+    <main>
+
+        {% include "./components/about_me.html" %}
+        {% include "./components/recent_work.html" %}
+        {% include "./components/cta.html" %}
+        {% include "./components/blog_posts.html" %}
+
+        {% comment %} Testimonials {% endcomment %}
+    </main>
+    
+{% endblock content %}

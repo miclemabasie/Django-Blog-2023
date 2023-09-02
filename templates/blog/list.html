@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="banner banner-secondary" id="top" style="background-image: url({% static 'img/banner-image-1-1920x300.jpg' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>Blog</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main>
+    <section class="featured-places">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-xs-12">
+                    <div class="row">
+                        {% for post in posts %}
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="featured-item">
+                                <div class="thumb">
+                                    <div class="thumb-img">
+                                        {% if post.image %}
+                                        <img src="{{post.image.url}}" alt="">
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="overlay-content">
+                                     <strong title="Author"><i class="fa fa-user"></i>{{post.author.username}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                     <strong title="Posted on"><i class="fa fa-calendar"></i> {{post.created.day}}/{{post.created.month}}/{{post.created.year}} {{post.created.time.hour}}:{{post.created.time.minute}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                     <strong title="Views"><i class="fa fa-map-marker"></i> 115</strong>
+                                    </div>
+                                </div>
+
+                                <div class="down-content">
+                                    <h4>{{post.title}}</h4>
+
+                                    <p>{{post.highlight}}</p>
+
+                                    <div class="text-button">
+                                        <a href="{{post.get_absolute_url}}">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <div class="form-group">
+                        <h4>Blog Search</h4>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+
+                            <span class="input-group-addon"><a href="#"><i class="fa fa-search"></i></a></span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <h4>Most Recent Post</h4>
+                    </div>
+                    {% for post in recent_posts %}
+                    <p><a href="post.get_absolute_url">{{post.title}}</a></p>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <h4>Categories</h4>
+                    </div>
+                    {% for category in categories %}
+                    <p><a href="post.get_absolute_url">{{category.name}}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}
