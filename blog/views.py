@@ -47,7 +47,7 @@ def post_list(request, page, tag_slug=None, category=None):
     if category:
         cat = get_object_or_404(Category, name=category)
         posts = posts.filter(category=cat)
-    paginator = Paginator(posts, per_page=2)
+    paginator = Paginator(posts, per_page=7)
     page_object = paginator.get_page(page)
 
     context = {
@@ -134,6 +134,7 @@ def post_search(request):
     form = SearchForm()
     query = None
     results = []
+    print("$############", request.GET)
     if "query" in request.GET:
         form = SearchForm(request.GET)
         if form.is_valid():
@@ -151,6 +152,7 @@ def post_search(request):
                 .filter(rank__gte=0.2)
                 .order_by("-rank")
             )
+
             # Search using trigram similarity
             # results = (
             #     Post.objects.published()
@@ -160,12 +162,24 @@ def post_search(request):
             #     .filter(similarity__gt=0.1)
             #     .order_by("-similarity")
             # )
+            # return redirect("blog:post_list", 1)
 
-    template_name = "blog/post/search.html"
+            results = []
+            posts = Post.objects.filter(title__icontains=query)
+            for post in posts:
+                results.append(post)
+            ids = [post.id for post in posts]
+            posts = Post.objects.filter(body__icontains=query)
+            for post in posts:
+                if post.id not in ids:
+                    results.append(posts)
+
+    print("Results", results)
+    template_name = "blog/list.html"
     context = {
         "form": form,
-        "results": results,
-        "query": query,
+        "page_obj": results,
+        "search_query": query,
     }
 
     return render(request, template_name, context)

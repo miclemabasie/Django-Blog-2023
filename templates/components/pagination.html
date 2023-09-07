@@ -1,0 +1,19 @@
+{% if page_obj.has_previous %}
+<a href="{% url 'blog:post_list' 1 %}">
+    first page
+</a>
+<a href="{% url 'blog:post_list' page_obj.previous_page_number %}">
+    ◀️
+</a>
+{% endif%}
+
+<a>{{page_obj.number}} of {{page_obj.paginator.num_pages}}</a>
+
+{% if page_obj.has_next %}
+    <a href="{% url 'blog:post_list' page_obj.next_page_number %}">
+        ▶️
+    </a>
+    <a href="{% url 'blog:post_list' page_obj.paginator.num_pages %}">
+        last page
+    </a>
+{% endif%}

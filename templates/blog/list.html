@@ -12,6 +12,8 @@
                         List of Post containing the tag: "{{tag}}"
                     {% elif category %} 
                         Post in Category "{{category}}" 
+                    {% elif query %} 
+                        Post containing search term "{{query}}"
                     {% else %}
                         Blog
                     {% endif %}</h2>
@@ -60,17 +62,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <div class="form-group">
-                        <h4>Blog Search</h4>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-
-                            <span class="input-group-addon"><a href="#"><i class="fa fa-search"></i></a></span>
-                        </div>
-                    </div>
+                    {% include "../components/search_form.html" %}
 
                     <br>
 
@@ -97,30 +89,16 @@
                 </div>
             </div>
         </div>
-
-        {% if page_obj.has_previous %}
-        <a href="{% url 'blog:post_list' 1 %}">
-            first page
-        </a>
-        <a href="{% url 'blog:post_list' page_obj.previous_page_number %}">
-            ◀️
-        </a>
-        {% endif%}
-
-        <a>{{page_obj.number}} of {{page_obj.paginator.num_pages}}</a>
-
-        {% if page_obj.has_next %}
-            <a href="{% url 'blog:post_list' page_obj.next_page_number %}">
-                ▶️
-            </a>
-            <a href="{% url 'blog:post_list' page_obj.paginator.num_pages %}">
-                last page
-            </a>
-        {% endif%}
-
+        {% if not query %}
+            {% include "../components/pagination.html" %}
+        {% endif %}
     </section>
 
 
 </main>
 
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/search.js' %}"></script>
+{% endblock scripts %}
