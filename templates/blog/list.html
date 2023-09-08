@@ -12,8 +12,8 @@
                         List of Post containing the tag: "{{tag}}"
                     {% elif category %} 
                         Post in Category "{{category}}" 
-                    {% elif query %} 
-                        Post containing search term "{{query}}"
+                    {% elif search_query %} 
+                        Post containing search term "{{search_query}}"
                     {% else %}
                         Blog
                     {% endif %}</h2>
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        {% if not query %}
+        {% if not search_query %}
             {% include "../components/pagination.html" %}
         {% endif %}
     </section>

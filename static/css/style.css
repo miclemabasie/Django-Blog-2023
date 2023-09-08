@@ -3,6 +3,19 @@ body {
   background-color: #fff;
 }
 
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #4facfe;
+  /* Chrome 10-25,
+  Safari 5.1-6 */
+  background: -webkit-linear-gradient(to bottom right, rgba(79, 172, 254,
+        1), rgba(0, 242, 254, 1));
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+,
+  Safari 7+ */
+  background: linear-gradient(to bottom right, rgba(79, 172, 254, 1), rgba(0,
+        242, 254, 1))
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -64,7 +77,7 @@ section {
 
 /* Header Style */
 
-.cf:before, 
+.cf:before,
 .cf:after {
   content: '';
   display: table;
@@ -105,11 +118,11 @@ section {
 }
 
 #primary-nav-button:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 #primary-nav-button.selected {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 #primary-nav-button:before {
@@ -173,9 +186,9 @@ section {
   transition: all 0.5s;
 }
 
-#primary-nav .active > a,
-#primary-nav li > a:hover,
-#primary-nav li.selected > a {
+#primary-nav .active>a,
+#primary-nav li>a:hover,
+#primary-nav li.selected>a {
   color: #4883ff;
 }
 
@@ -184,17 +197,17 @@ section {
 }
 
 .sub-menu li a {
-  line-height: 50px!important;
-  font-size: 13px!important;
+  line-height: 50px !important;
+  font-size: 13px !important;
   color: #7a7a7a;
 }
 
 .downarrow {
-    background: none;
-    display: inline-block;
+  background: none;
+  display: inline-block;
   padding: 0;
-    text-align: center;
-    min-width: 3px;
+  text-align: center;
+  min-width: 3px;
 }
 
 .sub-menu .downarrow {
@@ -232,7 +245,7 @@ section {
 
 #primary-nav .sub-menu {
   background: #fff;
-  box-shadow: 0px 5px 15px rgba(0,0,0,0.25);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   min-width: 160px;
   z-index: 200;
 }
@@ -271,13 +284,13 @@ section {
   border-bottom: 1px solid #ddd;
 }
 
-#primary-nav.mobile li:first-child  {
+#primary-nav.mobile li:first-child {
   width: 100%;
   margin: 0;
   border-top: 1px solid #ddd;
 }
 
-#primary-nav.mobile li.selected > a {
+#primary-nav.mobile li.selected>a {
   border-bottom: 1px solid #ddd;
 }
 
@@ -301,13 +314,14 @@ section {
 .mobile .downarrow,
 .mobile .sub-menu .downarrow {
   position: absolute;
-  top:42px;
+  top: 42px;
   right: 25px;
 }
 
 #primary-nav.mobile .sub-menu .downarrow:before {
   content: '\25be';
 }
+
 #primary-nav-button.mobile {
   display: inline-block;
 }
@@ -330,39 +344,40 @@ section.banner {
   position: relative;
 }
 
-.thumb-img { 
-  position: relative; 
+.thumb-img {
+  position: relative;
 }
 
-.thumb-img img { 
-  position: relative; z-index: 2; 
+.thumb-img img {
+  position: relative;
+  z-index: 2;
 }
 
-.input-group-addon:last-child { 
-  border: 1px solid rgba(0,0,0,.05); 
+.input-group-addon:last-child {
+  border: 1px solid rgba(0, 0, 0, .05);
 }
 
 .thumb-img:before,
-.banner:before { 
-  content: ''; 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  background-color: rgba(0,0,0,.3); 
+.banner:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .3);
   z-index: 1;
   border-radius: 5px;
 }
 
-.thumb-img:before { 
-  z-index: 3; 
-  background-color: rgba(0,0,0,.3); 
+.thumb-img:before {
+  z-index: 3;
+  background-color: rgba(0, 0, 0, .3);
 }
 
-.featured-item .thumb-img:before {  
-  border-bottom-left-radius: 0; 
-  border-bottom-right-radius: 0; 
+.featured-item .thumb-img:before {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .banner .container {
@@ -450,10 +465,11 @@ section.banner {
   box-shadow: none;
 }
 
-.submit-form input:focus{
+.submit-form input:focus {
   border-width: 0px;
-  outline:0; /* I have also tried outline:none */
-  -webkit-appearance:none;
+  outline: 0;
+  /* I have also tried outline:none */
+  -webkit-appearance: none;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -489,24 +505,27 @@ section.banner {
   text-align: center;
 }
 
-.popular-places .owl-dots .owl-dot span  {
+.popular-places .owl-dots .owl-dot span {
   width: 12px;
   height: 12px;
-  background-color: #cdcdcd!important;
+  background-color: #cdcdcd !important;
   display: inline-block;
   border-radius: 50%;
   margin: 0 3px;
 }
 
 .popular-places .owl-dots .active span {
-  background-color: #4883ff!important;
+  background-color: #4883ff !important;
 }
 
 .popular-places .owl-dots button {
   outline: none;
 }
 
-.popular-item { margin-top: 15px; margin-bottom: 15px; }
+.popular-item {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 
 .popular-places .popular-item .thumb {
   position: relative;
@@ -551,7 +570,9 @@ section.banner {
   z-index: 9;
 }
 
-.featured-item { margin-bottom: 30px; }
+.featured-item {
+  margin-bottom: 30px;
+}
 
 .popular-places .popular-item .thumb .plus-button i {
   width: 30px;
@@ -566,7 +587,7 @@ section.banner {
 }
 
 .popular-places .popular-item .thumb .plus-button i:hover {
-  background-color: rgba(250,250,250,0.3);
+  background-color: rgba(250, 250, 250, 0.3);
 }
 
 .featured-places .featured-item .thumb {
@@ -628,7 +649,7 @@ section.banner {
 
 .featured-places .featured-item .down-content {
   background-color: #fff;
-  box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   padding: 20px 20px 0;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -649,8 +670,8 @@ section.banner {
   margin-bottom: 15px;
 }
 
-.featured-places .featured-item .down-content span strong { 
-  font-size: 22px;  
+.featured-places .featured-item .down-content span strong {
+  font-size: 22px;
 }
 
 .featured-places .featured-item .down-content p {
@@ -712,11 +733,11 @@ section.our-services .service-item h4 {
 }
 
 .our-services .left-content h4 {
-  font-size:  19px;
-  font-weight:  600;
-  color:  #232323;
+  font-size: 19px;
+  font-weight: 600;
+  color: #232323;
   margin-top: 0px;
-  margin-bottom:  25px;
+  margin-bottom: 25px;
 }
 
 .our-services .left-content .blue-button {
@@ -728,18 +749,21 @@ section.our-services .service-item h4 {
   margin-top: 60px;
   padding-top: 60px;
 }
+
 .accordion li {
   position: relative;
 }
+
 .accordion li .accordion-trigger {
   border: 1px solid #ddd;
 }
-.accordion li:last-child .accordion-trigger  {
-  
-}
+
+.accordion li:last-child .accordion-trigger {}
+
 .accordion-content {
   display: none;
 }
+
 .accordion .accordion-trigger {
   width: 100%;
   display: block;
@@ -752,6 +776,7 @@ section.our-services .service-item h4 {
   padding: 15px 20px;
   text-decoration: none;
 }
+
 .accordion .accordion-trigger:after {
   width: 15px;
   height: 15px;
@@ -766,6 +791,7 @@ section.our-services .service-item h4 {
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
+
 .accordion-content {
   margin: 0px;
   padding: 20px;
@@ -787,7 +813,7 @@ section#video-container {
 }
 
 .list-group-no-border {
-  box-shadow: 0 0 0 rgba(0,0,0,0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .list-group-no-border .list-group-item {
@@ -803,7 +829,7 @@ section#video-container {
   border-top: 0;
 }
 
-#video-container  {
+#video-container {
   position: relative;
   width: 100%;
   height: 560px;
@@ -823,7 +849,7 @@ section#video-container {
 
 #video-container .video-overlay {
   z-index: 9999;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   width: 100%;
 }
 
@@ -837,10 +863,10 @@ section#video-container {
 
 }
 
-.video-content p { 
-  line-height: 2; 
-  color: #fff; 
-  text-align: center; 
+.video-content p {
+  line-height: 2;
+  color: #fff;
+  text-align: center;
 }
 
 #video-container .video-content .inner {
@@ -876,7 +902,7 @@ section#video-container {
   text-align: center;
   line-height: 56px;
   color: #fff;
-  background-color: rgba(250,250,250,0.1);
+  background-color: rgba(250, 250, 250, 0.1);
   font-size: 18px;
   border: 3px solid #fff;
   border-radius: 50%;
@@ -917,7 +943,7 @@ section.pricing-tables .table-item .top-content h1 {
 }
 
 section.pricing-tables .table-item ul {
-  margin: 40px 0px!important;
+  margin: 40px 0px !important;
 }
 
 section.pricing-tables .table-item ul li {
@@ -957,6 +983,7 @@ section.contact .section-heading {
   border: 2px solid #4883ff;
   transition: all 0.5s;
 }
+
 .modal-btn:hover {
   background-color: transparent;
   color: #4883ff;
@@ -964,7 +991,7 @@ section.contact .section-heading {
 
 /* Modal */
 .modal {
-  background-color: rgba(0,0,0,.65);
+  background-color: rgba(0, 0, 0, .65);
   display: none;
   overflow: auto;
   position: fixed;
@@ -980,8 +1007,9 @@ section.contact .section-heading {
 
 .modal-content .section-heading {
   text-align: left;
-  margin-top: 0px!important;
+  margin-top: 0px !important;
 }
+
 .modal-content .section-heading h2 {
   margin-top: 10px;
 }
@@ -1095,14 +1123,17 @@ textarea.form-control {
   margin: 0 auto;
   background-color: #fff;
   //background-color: #fff;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .modal-animated-in {
   animation: totop-in .3s ease;
 }
+
 .modal-animated-out {
   animation: totop-out .3s ease forwards;
 }
+
 .modal-content .close {
   position: absolute;
   right: -30px;
@@ -1130,10 +1161,11 @@ textarea.form-control {
     top: 600px;
     opacity: 0;
   }
+
   100% {
     top: 0;
     opacity: 1;
-  }  
+  }
 }
 
 @keyframes totop-out {
@@ -1141,10 +1173,11 @@ textarea.form-control {
     top: 0px;
     opacity: 1;
   }
+
   100% {
     top: -100%;
     opacity: 0;
-  }  
+  }
 }
 
 
@@ -1305,12 +1338,13 @@ footer .contact-info ul li a {
   .modal-content {
     width: 90%;
   }
+
   .modal-content .close {
     right: 50%;
     left: 50%;
     transform: translateX(-50%);
     top: -30px;
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   }
 
   footer .useful-links {
@@ -1320,13 +1354,13 @@ footer .contact-info ul li a {
   footer .contact-info {
     margin-top: 60px;
   }
-  
+
 }
 
-main > section { 
-  background: #fff;  
+main>section {
+  background: #fff;
 }
-  
-main > section:nth-child(even) { 
-  background: #f8f8f8; 
+
+main>section:nth-child(even) {
+  background: #f8f8f8;
 }

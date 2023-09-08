@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
-
+{% load humanize %}
 {% block content %}
 
 <main>
     <section class="featured-places">
+      
         <div class="container">
+          {% if new_comment %}
+          <div class="alert alert-success" role="alert">
+            <p>Hey! {{new_comment.name}}, Thanks for the comment 😎</p>
+          </div>
+          {% endif %}
             <div   class="form-group">
                 {% if post.image %}
                 <img src="{{post.image.url}}" style="height:50%; width: 100%" class="img-responsive" alt="">
@@ -16,32 +22,7 @@
             <h4>Leave a comment</h4>
 
             <div class="row">
-                <div class="col-md-8">
-                    <form id="contact" action="" method="post">
-                        <div class="row">
-                          <div class="col-lg-12 col-md-12 col-sm-12">
-                            <fieldset>
-                              <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
-                            </fieldset>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12">
-                            <fieldset>
-                              <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" required="">
-                            </fieldset>
-                          </div>
-                          <div class="col-lg-12">
-                            <fieldset>
-                              <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message" required=""></textarea>
-                            </fieldset>
-                          </div>
-                          <div class="col-lg-12">
-                            <div class="blue-button">
-                                <a href="#">Submit</a>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                </div>
+                {% include "../components/comment_form.html" %}
 
                 <div class="col-md-4">
                   <div class="left-content">
@@ -59,8 +40,12 @@
                   </div>
                 </div>
             </div>
+            {% include "../components/comments.html" %}
         </div>
+
     </section>
+
+    
 </main>
 
 

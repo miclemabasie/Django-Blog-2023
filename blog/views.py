@@ -19,7 +19,7 @@ import time, logging
 from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import requires_csrf_token
 
-from .models import Post, Category
+from .models import Post, Category, Comment
 from .forms import EmailPostForm, CommentForm, SearchForm, CreatePostForm
 from taggit.models import Tag
 
@@ -71,26 +71,22 @@ def post_detail(request, year, month, day, post):
         # publish__month=month,
         # publish__day=day,
     )
-    print("##########33 Post", post)
     comments = post.comments.all()
+    print("########################3", comments)
     new_comment = None
     # Check for a post request for the comments
     if request.method == "POST":
-        # A comment was posted
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            # Create comment object bu don't save to the database yet
-            new_comment = comment_form.save(commit=False)
-            # assign the current post to the comment
-            new_comment.post = post
-            # Save the comment to the database
-            new_comment.save()
-    else:
-        comment_form = CommentForm()
+        print(request.POST)
+        # A comment was posted / Extract data from post request
+        data = request.POST
+        name = data.get("name")
+        email = data.get("email")
+        message = data.get("message")
+        new_comment = Comment(name=name, email=email, body=message, post=post)
+        new_comment.save()
 
     context = {
         "post": post,
-        "comment_form": comment_form,
         "comments": comments,
         "new_comment": new_comment,
     }
