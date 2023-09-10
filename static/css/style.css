@@ -1,6 +1,7 @@
 body {
   font-family: 'Raleway', 'sans-serif';
   background-color: #fff;
+  overflow-x: hidden;
 }
 
 .gradient-custom {
@@ -89,7 +90,7 @@ section {
 }
 
 .cf {
-  *zoom: 1;
+  zoom: 1;
 }
 
 #header {
@@ -1122,7 +1123,7 @@ textarea.form-control {
   width: 60%;
   margin: 0 auto;
   background-color: #fff;
-  //background-color: #fff;
+  background-color: #fff;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

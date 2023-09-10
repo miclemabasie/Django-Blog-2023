@@ -18,6 +18,7 @@ from django.utils.text import slugify
 import time, logging
 from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import requires_csrf_token
+from portfolio.models import Portfolio
 
 from .models import Post, Category, Comment
 from .forms import EmailPostForm, CommentForm, SearchForm, CreatePostForm
@@ -26,9 +27,11 @@ from taggit.models import Tag
 
 def index(request):
     posts = Post.objects.published().order_by("-created")
+    works = Portfolio.objects.order_by("-created")[:5]
     template_name = "home.html"
     context = {
         "posts": posts,
+        "works": works,
     }
 
     return render(request, template_name, context)

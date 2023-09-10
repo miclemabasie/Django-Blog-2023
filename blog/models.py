@@ -29,6 +29,9 @@ class PublishedManager(models.Manager):
         return qs
 
 
+from PIL import Image
+
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ("draft", "Draft"),
@@ -46,19 +49,6 @@ class Post(models.Model):
         verbose_name=_("Category"),
         on_delete=models.CASCADE,
     )
-    # body = EditorJsField(
-    #     editorjs_config={
-    #         "tools": {
-    #             "Link": {"config": {"endpoint": "/linkfetching/"}},
-    #             "Image": {
-    #                 "config": {
-    #                     "endpoints": {"byFile": "/uploadi/", "byUrl": "/uploadi/"},
-    #                 }
-    #             },
-    #             "Attaches": {"config": {"endpoint": "/uploadf/"}},
-    #         }
-    #     }
-    # )
     body = RichTextField(blank=True, null=True)
     highlight = models.CharField(max_length=250, blank=True, null=True)
     publish = models.DateTimeField(default=timezone.now)
@@ -101,6 +91,15 @@ class Post(models.Model):
         else:
             url = None
         return url
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        SIZE = 1200, 300
+
+        if self.image:
+            image = Image.open(self.image.path)
+            image.thumbnail(SIZE, Image.LANCZOS)
+            image.save(self.image.path)
 
 
 class Comment(models.Model):

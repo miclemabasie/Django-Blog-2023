@@ -40,6 +40,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     "blog.apps.BlogConfig",
+    "portfolio.apps.PortfolioConfig",
 ]
 
 THIRD_PARTY_APPS = [
@@ -80,6 +81,7 @@ TEMPLATES = [
                 "blog.context_processors.recent_posts",
                 "blog.context_processors.categories",
                 "blog.context_processors.tags",
+                "portfolio.context_processors.recent_works",
             ],
         },
     },

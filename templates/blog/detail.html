@@ -4,19 +4,18 @@
 {% block content %}
 
 <main>
-    <section class="featured-places">
-      
+    <section class="featured-places" style="padding: 0px">
         <div class="container">
           {% if new_comment %}
           <div class="alert alert-success" role="alert">
             <p>Hey! {{new_comment.name}}, Thanks for the comment 😎</p>
           </div>
           {% endif %}
-            <div   class="form-group">
+            {% comment %} <div   class="form-group">
                 {% if post.image %}
-                <img src="{{post.image.url}}" style="height:50%; width: 100%" class="img-responsive" alt="">
+                <img src="{{post.image.url}}" class="img-responsive" alt="">
                 {% endif %}
-            </div>
+            </div> {% endcomment %}
 
             {{post.body|safe}}
             <h4>Leave a comment</h4>
@@ -24,7 +23,7 @@
             <div class="row">
                 {% include "../components/comment_form.html" %}
 
-                <div class="col-md-4">
+                {% comment %} <div class="col-md-4">
                   <div class="left-content">
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur similiqu consectetur. Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti.</p>
@@ -38,7 +37,7 @@
                       <li><a href="#"><i class="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
-                </div>
+                </div> {% endcomment %}
             </div>
             {% include "../components/comments.html" %}
         </div>

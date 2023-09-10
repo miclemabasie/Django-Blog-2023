@@ -12,173 +12,36 @@
         </div> 
 
         <div class="row">
+            {% for Work in recent_works %}
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
                         <div class="thumb-img">
-                            <img src="img/product-1-720x480.jpg" alt="">
+                            <img src="{{work.image.url}}" alt="">
                         </div>
 
                         <div class="overlay-content">
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 15-06-2020</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                         <strong title="Posted on"><i class="fa fa-calendar"></i> {{work.created.day}}-{{work.created.month}}-{{work.created.year}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
                          <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
                          <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
                         </div>
                     </div>
 
                     <div class="down-content">
-                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                        <h4>{{work.title}}</h4>
 
-                        <p> Medical / Health Jobs</p>
+                        <p>{% for tech in work.get_stack %}{{tech}}/{% endfor %}</p>
+                        
 
-                        <p><span><strong><sup>$</sup>60 000</strong></span></p>
+                        <p><span><strong><sup>🕸️</sup>Live Peview</strong></span></p>
 
                         <div class="text-button">
-                            <a href="job-details.html">View More</a>
+                            <a href="#">Read More</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <div class="thumb-img">
-                            <img src="img/product-2-720x480.jpg" alt="">
-                        </div>
-
-                        <div class="overlay-content">
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 15-06-2020</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
-                        </div>
-                    </div>
-                    
-                    <div class="down-content">
-                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-
-                        <p> Medical / Health Jobs</p>
-
-                        <p><span><strong><sup>$</sup>60 000</strong></span></p>
-
-                        <div class="text-button">
-                            <a href="job-details.html">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <div class="thumb-img">
-                            <img src="img/product-3-720x480.jpg" alt="">
-                        </div>
-
-                        <div class="overlay-content">
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 15-06-2020</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
-                        </div>
-                    </div>
-                    
-                    <div class="down-content">
-                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-
-                        <p> Medical / Health Jobs</p>
-
-                        <p><span><strong><sup>$</sup>60 000</strong></span></p>
-
-                        <div class="text-button">
-                            <a href="job-details.html">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <div class="thumb-img">
-                            <img src="img/product-4-720x480.jpg" alt="">
-                        </div>
-
-                        <div class="overlay-content">
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 15-06-2020</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
-                        </div>
-                    </div>
-
-                    <div class="down-content">
-                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-
-                        <p> Medical / Health Jobs</p>
-
-                        <p><span><strong><sup>$</sup>60 000</strong></span></p>
-
-                        <div class="text-button">
-                            <a href="job-details.html">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <div class="thumb-img">
-                            <img src="img/product-5-720x480.jpg" alt="">
-                        </div>
-
-                        <div class="overlay-content">
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 15-06-2020</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
-                        </div>
-                    </div>
-                    
-                    <div class="down-content">
-                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-
-                        <p> Medical / Health Jobs</p>
-
-                        <p><span><strong><sup>$</sup>60 000</strong></span></p>
-
-                        <div class="text-button">
-                            <a href="job-details.html">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <div class="thumb-img">
-                            <img src="img/product-6-720x480.jpg" alt="">
-                        </div>
-
-                        <div class="overlay-content">
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 15-06-2020</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
-                        </div>
-                    </div>
-                    
-                    <div class="down-content">
-                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-
-                        <p> Medical / Health Jobs</p>
-
-                        <p><span><strong><sup>$</sup>60 000</strong></span></p>
-
-                        <div class="text-button">
-                            <a href="job-details.html">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
