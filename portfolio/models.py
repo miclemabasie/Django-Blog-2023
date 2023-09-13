@@ -12,9 +12,7 @@ class Portfolio(models.Model):
     github = models.CharField(
         max_length=256, verbose_name=("Github Link"), null=True, blank=True
     )  # To be changed
-    image1 = models.ImageField(
-        upload_to="media/porfolio/%Y_%m_%d", null=True, blank=True
-    )
+    image1 = models.ImageField(upload_to="media/porfolio/%Y_%m_%d")
     image2 = models.ImageField(
         upload_to="media/porfolio/%Y_%m_%d", null=True, blank=True
     )

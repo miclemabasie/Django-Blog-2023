@@ -26,8 +26,8 @@ from taggit.models import Tag
 
 
 def index(request):
-    posts = Post.objects.published().order_by("-created")
-    works = Portfolio.objects.order_by("-created")[:5]
+    posts = Post.objects.published().order_by("-created")[:6]
+    works = Portfolio.objects.order_by("-created")[:3]
     template_name = "home.html"
     context = {
         "posts": posts,
