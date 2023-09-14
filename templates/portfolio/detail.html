@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<main>
+  <section class="banner banner-secondary" id="top" style="background-image: url({% static 'img/banner-image-1-1920x300.jpg' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>{{project.name}}</h2>
+
+                    <h4><i class="fa fa-user"></i>Miclem Abasie  &nbsp;&nbsp;&nbsp;&nbsp;  <i class="fa fa-calendar"></i> 12/06/2020 10:30   &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-eye"></i> 114</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="featured-places" style="padding: 0px">
+        <div class="container">
+          {% if new_comment %}
+          <div class="alert alert-success" role="alert">
+            <p>Hey! {{new_comment.name}}, Thanks for the comment 😎</p>
+          </div>
+          {% endif %}
+            {{project.description|safe}}
+            {{project.github}}
+            <div class="blue-button">
+              <a href="{{project.github}}">Visit on Github</a>
+          </div>
+
+          <div class="green-button">
+            <a href="{{project.link}}">View live project</a>
+        </div>
+        </div>
+
+    </section>
+
+    
+</main>
+
+
+{% endblock content %}

@@ -1,11 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from ckeditor.fields import RichTextField
 
 
 class Portfolio(models.Model):
     name = models.CharField(max_length=255, verbose_name=_("Project Name"))
     slug = models.SlugField(unique=True)
-    description = models.TextField(verbose_name=_("Projects's description"))
+    description = RichTextField(blank=True, null=True)
     link = models.CharField(
         max_length=256, verbose_name=_("Link to Project"), null=True, blank=True
     )
@@ -26,6 +27,7 @@ class Portfolio(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name=_("Dated Created"))
     updated = models.DateTimeField(auto_now=True, verbose_name=_("Date Updated"))
     is_online = models.BooleanField(default=False, verbose_name=_("Is Project Online"))
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name}"

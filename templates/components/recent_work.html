@@ -12,39 +12,7 @@
         </div> 
 
         <div class="row">
-            {% for work in works %}
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-item">
-                    <div class="thumb">
-                        <div class="thumb-img">
-                            <img src="{{work.image1.url}}" alt="">
-                        </div>
-
-                        <div class="overlay-content">
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 
-                            {% with created=work.created %}
-                            {{created.day}}/{{created.month}}/{{created.year}} {{created.hour}}:{{created.minute}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                            {% endwith %}
-                         <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
-                        </div>
-                    </div>
-
-                    <div class="down-content">
-                        <h4>{{work.title}}</h4>
-
-                        <p>{% for tech in work.get_stack %}{{tech}}/{% endfor %}</p>
-                        
-
-                        <p><span><strong><sup>🕸️</sup>Live Peview</strong></span></p>
-
-                        <div class="text-button">
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+           {% include "../components/project_listing.html" %}
         </div>
     </div>
 </section>

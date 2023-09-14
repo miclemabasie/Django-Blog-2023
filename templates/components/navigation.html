@@ -11,23 +11,23 @@
                     </div></a>
                     <nav id="primary-nav" class="dropdown cf">
                         <ul class="dropdown menu">
-                            <li class='active'><a href="index.html">Home</a></li>
+                            <li class='active'><a href="{% url 'index' %}">Home</a></li>
 
-                            <li><a href="jobs.html">Portfolio</a></li>
+                            <li><a href="{% url 'projects:project_list' %}">Projects</a></li>
                             <li><a href="{% url 'blog:post_list' 1 %}">Blog</a></li>
 
 
                             <li>
-                                <a href="#">About</a>
-                                <ul class="sub-menu">
+                                <a href="{% url 'about' %}">About</a>
+                                {% comment %} <ul class="sub-menu">
                                     <li><a href="about-us.html">About Us</a></li>
                                     <li><a href="team.html">Team</a></li>
                                     <li><a href="testimonials.html">Testimonials</a></li>
                                     <li><a href="terms.html">Terms</a></li>
-                                </ul>
+                                </ul> {% endcomment %}
                             </li>
 
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
                         </ul>
                     </nav><!-- / #primary-nav -->
                 </div>

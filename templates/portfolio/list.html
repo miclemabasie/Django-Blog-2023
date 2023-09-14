@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="banner banner-secondary" id="top" style="background-image: url({% static 'img/banner-image-1-1920x300.jpg' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-caption">
+                    <div class="line-dec"></div>
+                    <h2>
+                    {% if tag %}
+                        List of Post containing the tag: "{{tag}}"
+                    {% elif category %} 
+                        Post in Category "{{category}}" 
+                    {% elif search_query %} 
+                        Post containing search term "{{search_query}}"
+                    {% else %}
+                        Blog
+                    {% endif %}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main>
+    <section class="featured-places">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-lg-9 col-md-8 col-xs-12">
+                    <div class="row">
+                        {% include "../components/project_listing.html" %}
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    {% include "../components/search_form.html" %}
+
+                    <br>
+
+                    <div class="form-group">
+                        <h4>Most Recent Post</h4>
+                    </div>
+                    {% for post in recent_posts %}
+                    <p><a href="{{post.get_absolute_url}}">{{post.title}}</a></p>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <h4>Categories</h4>
+                    </div>
+                    {% for category in categories %}
+                    <p><a href="{% url 'blog:post_list_by_category' 1 category.name %}">{{category.name}}</a></p>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <h4>Popular Tags</h4>
+                    </div>
+                    {% for tag in tags %}
+                    <p><a href="{% url 'blog:post_list_by_tag' 1 tag.name %}">{{tag.name}}</a></p>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <h4>Prjects</h4>
+                    </div>
+                    {% for project in recent_works %}
+                    <p><a href="{% url 'projects:project_detail' project.slug %}">{{project.name}}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+</main>
+
+{% endblock content %}
+

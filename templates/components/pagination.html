@@ -12,7 +12,7 @@
 {% if page_obj.has_next %}
     <a href="{% url 'blog:post_list' page_obj.next_page_number %}">
         ▶️
-    </a>
+</a>
     <a href="{% url 'blog:post_list' page_obj.paginator.num_pages %}">
         last page
     </a>

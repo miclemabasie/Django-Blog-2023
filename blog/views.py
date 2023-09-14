@@ -37,6 +37,18 @@ def index(request):
     return render(request, template_name, context)
 
 
+def about(request):
+    template_name = "blog/about.html"
+    context = {}
+    return render(request, template_name, context)
+
+
+def contact(request):
+    template_name = "blog/contact.html"
+    context = {}
+    return render(request, template_name, context)
+
+
 def post_list(request, page, tag_slug=None, category=None):
     template_name = "blog/list.html"
     posts = Post.objects.filter(status="published")
