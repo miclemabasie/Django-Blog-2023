@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Category
+from .models import Post, Comment, Category, Common
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -37,3 +37,8 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ["name", "description", "created", "updated"]
     search_fields = ("name", "created")
     prepopulated_fields = {"slug": ("name",)}
+
+
+@admin.register(Common)
+class CommonAdmin(admin.ModelAdmin):
+    list_display = ["name", "created", "updated"]

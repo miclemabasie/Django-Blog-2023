@@ -120,3 +120,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment by {self.name} on {self.post}"
+
+
+class Common(models.Model):
+    name = models.CharField(verbose_name=_("Name of Common"), max_length=200)
+    about = RichTextField(blank=True, null=True)
+    about_headline = RichTextField(blank=True, null=True)
+    image = models.ImageField(upload_to="media/profiles", null=True, blank=True)
+    created = models.DateTimeField(
+        verbose_name=_("Date of creation"), auto_now_add=True
+    )
+    updated = models.DateTimeField(verbose_name=_("Date Updated"), auto_now=True)

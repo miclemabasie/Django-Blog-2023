@@ -13,6 +13,7 @@ from django.contrib.postgres.search import (
     SearchRank,
     TrigramSimilarity,
 )
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.utils.text import slugify
 import time, logging
@@ -20,7 +21,7 @@ from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import requires_csrf_token
 from portfolio.models import Portfolio
 
-from .models import Post, Category, Comment
+from .models import Post, Category, Comment, Common
 from .forms import EmailPostForm, CommentForm, SearchForm, CreatePostForm
 from taggit.models import Tag
 
@@ -39,11 +40,29 @@ def index(request):
 
 def about(request):
     template_name = "blog/about.html"
-    context = {}
+    about = Common.objects.all().first()
+    print("this is the about conten", about)
+    context = {
+        "about": about,
+    }
     return render(request, template_name, context)
 
 
 def contact(request):
+    if request.method == "POST":
+        data = request.POST
+        email = data.get("email")
+        subject = data.get("subject")
+        message = data.get("message")
+        send_mail(
+            subject,
+            message,
+            email,
+            [
+                "admin@mail.com",
+            ],
+        )
+        return redirect("/")
     template_name = "blog/contact.html"
     context = {}
     return render(request, template_name, context)

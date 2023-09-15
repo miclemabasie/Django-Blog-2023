@@ -21,11 +21,6 @@
 
     <section class="featured-places" style="padding: 0px">
         <div class="container">
-          {% if new_comment %}
-          <div class="alert alert-success" role="alert">
-            <p>Hey! {{new_comment.name}}, Thanks for the comment 😎</p>
-          </div>
-          {% endif %}
             {{project.description|safe}}
             {{project.github}}
             <div class="blue-button">
