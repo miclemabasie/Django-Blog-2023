@@ -17,12 +17,12 @@
         </div>
 
         <div class="down-content">
-            <h4>{{work.title}}</h4>
+            <h4>{{work.name}}</h4>
 
             <p>{% for tech in work.get_stack %}{{tech}}/{% endfor %}</p>
             
 
-            <p><span><strong><sup>🕸️</sup>Live Peview</strong></span></p>
+            <p><span><strong><sup>🕸️</sup>{{work.title}}</strong></span></p>
 
             <div class="text-button">
                 <a href="{% url 'projects:project_detail' work.slug %}">Read More</a>

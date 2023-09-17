@@ -2,7 +2,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
+            {% comment %} <div class="col-md-5">
                 <div class="about-veno">
                     <div class="logo">
                         <img src="img/footer_logo.png" alt="Venue Logo">
@@ -16,7 +16,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> {% endcomment %}
             <div class="col-md-4">
                 <div class="useful-links">
                     <div class="footer-heading">
@@ -25,16 +25,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <ul>
-                                <li><a href="inde.html"><i class="fa fa-stop"></i>Home</a></li>
-                                <li><a href="about.html"><i class="fa fa-stop"></i>About</a></li>
-                                <li><a href="contact.html"><i class="fa fa-stop"></i>Contact Us</a></li>
+                                <li><a href="{% url 'index' %}"><i class="fa fa-stop"></i>Home</a></li>
+                                <li><a href="{% url 'about' %}"><i class="fa fa-stop"></i>About</a></li>
+                                <li><a href="{% url 'contact' %}"><i class="fa fa-stop"></i>Contact Us</a></li>
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <ul>
-                                <li><a href="jobs.html"><i class="fa fa-stop"></i>Jobs</a></li>
-                                <li><a href="testimonials.html"><i class="fa fa-stop"></i>Testimonials</a></li>
-                                <li><a href="blog.html"><i class="fa fa-stop"></i>Blog</a></li>
+                                <li><a href="{% url 'projects:project_list' %}"><i class="fa fa-stop"></i>Projects</a></li>
+                                <li><a href="{% url 'blog:post_list' 1 %}"><i class="fa fa-stop"></i>Blog</a></li>
                             </ul>
                         </div>
                     </div>
