@@ -17,7 +17,8 @@ environ.Env.read_env(BASE_DIR / ".env")
 # SECRET_KEY = "django-insecure-^wo34vt69*46cal!(2d7%n_r6$d-36$as-__$on0-fy2kbp&e-"
 SECRET_KEY = env("SECRET_KEY")
 
-ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 SITE_ID = 1
 # Application definition
