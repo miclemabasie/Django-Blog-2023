@@ -7,7 +7,9 @@ from pathlib import Path
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Before using your Heroku app in production, make sure to review Django's deployment checklist:
@@ -105,7 +107,7 @@ ROOT_URLCONF = "my_blog.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -113,11 +115,14 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "blog.context_processors.recent_posts",
+                "blog.context_processors.categories",
+                "blog.context_processors.tags",
+                "portfolio.context_processors.recent_works",
             ],
         },
     },
 ]
-
 WSGI_APPLICATION = "my_blog.wsgi.application"
 
 
